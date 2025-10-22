@@ -3,6 +3,7 @@ package com.tradeshift.portfolio.service;
 import com.tradeshift.portfolio.model.User;
 import com.tradeshift.portfolio.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +14,7 @@ import java.util.List;
 @Service
 public class CustomUserDetailsService  implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -25,12 +26,12 @@ public class CustomUserDetailsService  implements UserDetailsService {
         if(user==null){
             throw new UsernameNotFoundException("User not found with email: "+username);
         }
-        // For simplicity, we are not assigning any roles or authorities here.
-        List<GrantedAuthority> authorities= new ArrayList<>();
 
-        // You can add roles or authorities to the list if needed.
-        return new org.springframework.security.core.
-                userdetails.User(user.getEmail(),
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
                 user.getPassword(),
                 authorities
         );
