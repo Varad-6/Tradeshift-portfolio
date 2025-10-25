@@ -1,0 +1,48 @@
+spring:
+
+  # Eureka Client Configuration
+
+  application:
+    name: tradeShiftPortfolio
+  datasource:
+    url: jdbc:mysql://localhost:3306/tradeshift_portfolio
+    username: root
+    password: Anil@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: padianilanil143@gmail.com
+    password: "xeaxpapzvpdjfngn"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+server:
+  port: 8081
+
+logging:
+  level:
+    com.tradeshift.portfolio: DEBUG
+    org.springframework.security: DEBUG
+
+sms:
+  provider: fast2sms
+  fast2sms:
+    api-key: UHXlORzmeNwcaBhbkFgVny5tIuJTCxdq0SMPiZ7WvK4sE1YjQL0NP7KWVuQnq6cACeIvzfxJGUlH8BaR
+    sender-id: TXTLCL

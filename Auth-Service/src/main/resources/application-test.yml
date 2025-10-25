@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: tradeShiftPortfolioTest
+  datasource:
+    url: jdbc:mysql://localhost:3306/tradeshift_portfolio
+    username: root
+    password: Anil@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8081

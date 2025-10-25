@@ -1,0 +1,11 @@
+package com.tradeshift.portfolio.repository;
+
+import com.tradeshift.portfolio.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long>{
+
+    User findByEmail(String email);
+    User findByMobile(String mobile);
+
+}
